@@ -43,7 +43,7 @@ exports.createBus = async function(bus){
             busNum: bus.busNum,
             busName: bus.busName,
             destination: bus.destination,
-            frequesncy: bus.frequesncy,
+            frequesncy: bus.frequency,
             date: new Date(),
             status: bus.status
         })
@@ -84,8 +84,11 @@ exports.createBus = async function(bus){
     
         //Edit the Bus Object
     
-        oldBus.title = bus.title
-        oldBus.description = bus.description
+        oldBus.busNum = bus.busNum
+        oldBus.busName = bus.busName
+        oldBus.destination = bus.destination
+        oldBus.frequency = bus.frequency
+        oldBus.date = bus.date
         oldBus.status = bus.status
     
     

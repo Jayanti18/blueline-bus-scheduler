@@ -90,7 +90,7 @@ exports.updateBus = async function(req, res, next){
 
     try{
         var updatedBus = await BusService.updateBus(bus)
-        return res.status(200).json({status: 200, data: updatedBus, message: "Succesfully Updated Tod"})
+        return res.status(200).json({status: 200, data: updatedBus, message: "Succesfully Updated Bus"})
     }catch(e){
         return res.status(400).json({status: 400., message: e.message})
     }
