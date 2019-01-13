@@ -3,10 +3,17 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose')
 var bluebird = require('bluebird')
+// Get the API route ...
+var api = require('./routes/api.route')
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// var indexRouter = require('./routes/index');
+// var usersRouter = require('./routes/users');
+
+
+// var index = require('./routes/index');
+// var users = require('./routes/users');
 
 var app = express();
 
@@ -20,21 +27,38 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
+// CORS config so that the angular app can talk to this api without errors on permissions. 
+app.use(function(req, res, next) {
+  res.header
+    ("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header
+    ("Access-Control-Allow-Headers", 
+"Origin, X-Requested-With, Content-Type, Accept");
+  res.header
+    ("Access-Control-Allow-Methods", 
+"GET, POST, PUT, DELETE, OPTIONS");
+  next();
+});
+
+
+
+// app.use('/', indexRouter);
+// app.use('/users', usersRouter);
+app.use('/api', api);
 
 // mongoose conection bellow
-var mongoose = require('mongoose')
+
 mongoose.connect
-('mongodb://127.0.0.1:27017/blueline-bus-scheduler', { useNewUrlParser: true })
+('mongodb://127.0.0.1:27017/bus', { useNewUrlParser: true })
 .then(()=> 
 { console.log
 (`Succesfully Connected to the Mongodb Database  at URL :
- mongodb://127.0.0.1:27017/blueline-bus-scheduler`)})
+ mongodb://127.0.0.1:27017/bus`)})
 .catch(()=> 
 { console.log
 (`Error Connecting to the Mongodb Database at URL :
- mongodb://127.0.0.1:27017/blueline-bus-scheduler`)})
+ mongodb://127.0.0.1:27017/bus`)})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
