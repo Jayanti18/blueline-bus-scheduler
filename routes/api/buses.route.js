@@ -11,11 +11,11 @@ var BusController = require('../../controllers/bus.controller.js');
 
 router.get('/', BusController.getBuses)
 
-router.post('/',BusController.createBus)
+router.post('/', BusController.createBus)
 
-router.put('/',BusController.updateBus)
+router.put('/', BusController.updateBus)
 
-router.delete('/:id',BusController.removeBus)
+router.delete('/:id', BusController.removeBus)
 
 
 // Export the Router

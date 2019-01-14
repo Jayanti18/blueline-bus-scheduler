@@ -18,7 +18,7 @@ exports.getBuses = async function (req, res, next) {
 
     try {
 
-        var buses = await BusService.getBus({}, page, limit)
+        var buses = await BusService.getBuses({}, page, limit)
 
         // Return the buses list with the appropriate 
         //HTTP Status Code and Message.
